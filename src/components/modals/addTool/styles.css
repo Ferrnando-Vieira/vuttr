@@ -1,0 +1,71 @@
+#formTool {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 30px;
+}
+
+#modalTitle {
+  display: flex;
+  align-items: center;
+}
+
+#newToolIcn {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+#title {
+  font-size: 36px;
+}
+
+.inputLabel {
+  margin: 5px 0;
+  font-size: 24px;
+}
+
+.inputLabel:first-child {
+  margin-top: 0;
+}
+
+form input,
+textarea {
+  border: 1px solid#170C3A;
+  padding: 5px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #8f8a9b;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #8f8a9b;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #b9b9b9;
+}
+#btnAddTool {
+  padding: 5px 50px;
+  background: #365df0;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  float: right;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #365df0;
+}
+
+#btnAddTool:hover {
+  background: #2f55cc;
+}
+
+#btnAddTool:active {
+  background: #244aa8;
+}

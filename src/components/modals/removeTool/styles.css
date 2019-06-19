@@ -1,0 +1,61 @@
+#removeModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+#removeToolIcn {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+#confirmText {
+  font-size: 20px;
+}
+
+#rmvModalButtons {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#btnCancel {
+  padding: 5px 50px;
+  background: #365df0;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  float: right;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #365df0;
+  margin-right: 5px;
+}
+
+#btnCancel:hover {
+  background: #2f55cc;
+}
+
+#btnCancel:active {
+  background: #244aa8;
+}
+
+#btnRemoveTool {
+  padding: 5px 35px;
+  background: #f95e5a;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  border: none;
+  float: right;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #f95e5a;
+}
+
+#btnRemoveTool:hover {
+  background: #cc4c4c;
+}
+
+#btnRemoveTool:active {
+  background: #a53f3f;
+}

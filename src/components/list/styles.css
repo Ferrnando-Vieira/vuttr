@@ -1,0 +1,49 @@
+#listBox {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  background: #f5f4f6;
+  border-radius: 5px;
+  border: 1px solid #170c3a;
+  margin-top: 30px;
+}
+
+#listBox:first-child {
+  margin-top: 0;
+}
+
+a {
+  color: #365df0;
+  font-size: 36px;
+}
+
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.remove {
+  cursor: pointer;
+  padding: 0 20px 0 35px;
+  background: url("../../images/remove.svg") no-repeat 15px;
+  background-size: 15px;
+  border: none;
+}
+
+.remove:active {
+  margin-top: 5px;
+}
+
+.description {
+  font-size: 20px;
+  text-align: justify;
+  font-weight: 400; /* regular */
+  margin-bottom: 10px;
+}
+
+.tags {
+  font-size: 18px;
+  font-weight: 700;
+}
