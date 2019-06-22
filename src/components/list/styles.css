@@ -27,7 +27,7 @@ a {
 .remove {
   cursor: pointer;
   padding: 0 20px 0 35px;
-  background: url("../../images/remove.svg") no-repeat 15px;
+  background: url("../../assets/images/remove.svg") no-repeat 15px;
   background-size: 15px;
   border: none;
 }

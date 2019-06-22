@@ -3,10 +3,11 @@ import ReactModal from "react-modal";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Creators as AddActions } from "../../../store/ducks/addTool";
+import { Creators as ListsActions } from "../../../store/ducks/lists";
+import { Creators as ModalActions } from "../../../store/ducks/modalActions";
 
 import "./styles.css";
-import addIcn from "../../../images/add.svg";
+import addIcn from "../../../assets/images/add.svg";
 
 const customStyles = {
   overlay: {
@@ -23,7 +24,7 @@ const customStyles = {
 
 class AddTool extends Component {
   state = {
-    name: "",
+    title: "",
     link: "",
     description: "",
     tags: []
@@ -32,7 +33,14 @@ class AddTool extends Component {
   sendForm(event) {
     event.preventDefault();
     this.props.addNewToolRequest(this.state);
+    this.props.closeModalAdd();
+    console.log("envio de form", this.state);
   }
+
+  handleTag = event => {
+    const tagsArray = event.target.value.split(" ");
+    this.setState({ tags: tagsArray });
+  };
 
   render() {
     return (
@@ -52,7 +60,7 @@ class AddTool extends Component {
               <input
                 type="text"
                 placeholder="Insert here the tool name"
-                onChange={e => this.setState({ name: e.target.value })}
+                onChange={e => this.setState({ title: e.target.value })}
               />
               <p className="inputLabel">Tool Link</p>
               <input
@@ -73,7 +81,7 @@ class AddTool extends Component {
               <input
                 type="text"
                 placeholder="Insert here the tags"
-                onChange={e => this.setState({ tags: e.target.value })}
+                onChange={e => this.handleTag(e)}
               />
             </div>
             <button
@@ -91,10 +99,11 @@ class AddTool extends Component {
 }
 
 const mapStateToProps = state => ({
-  state: state.lists
+  state: state.modals
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(AddActions, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ ...ListsActions, ...ModalActions }, dispatch);
 
 export default connect(
   mapStateToProps,

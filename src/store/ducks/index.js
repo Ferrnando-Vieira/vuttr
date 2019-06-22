@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
 import lists from "./lists";
-import addTool from "./addTool";
+import modals from "./modalActions";
 
 export default combineReducers({
   lists,
-  addTool
+  modals
 });

@@ -4,9 +4,10 @@ import ReactModal from "react-modal";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as ListsActions } from "../../../store/ducks/lists";
+import { Creators as ModalActions } from "../../../store/ducks/modalActions";
 
 import "./styles.css";
-import removeIcn from "../../../images/remove.svg";
+import removeIcn from "../../../assets/images/remove.svg";
 
 const customStyles = {
   overlay: {
@@ -22,6 +23,12 @@ const customStyles = {
 };
 
 class RemoveTool extends Component {
+  handleRemove = () => {
+    this.props.removeToolRequest(this.props.state.toolID);
+    this.props.closeModalRemove();
+    console.log("remover tool", this.props.state.toolID);
+  };
+
   render() {
     return (
       <ReactModal
@@ -40,12 +47,7 @@ class RemoveTool extends Component {
           </p>
 
           <div id="rmvModalButtons">
-            <button
-              id="btnRemoveTool"
-              onClick={() =>
-                this.props.removeToolRequest(this.props.state.toolID)
-              }
-            >
+            <button id="btnRemoveTool" onClick={this.handleRemove}>
               Yes, remove
             </button>
             <button id="btnCancel" onClick={this.props.closeModalRemove}>
@@ -59,11 +61,11 @@ class RemoveTool extends Component {
 }
 
 const mapStateToProps = state => ({
-  state: state.lists
+  state: { ...state.lists, ...state.modals }
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(ListsActions, dispatch);
+  bindActionCreators({ ...ListsActions, ...ModalActions }, dispatch);
 
 export default connect(
   mapStateToProps,

@@ -6,89 +6,55 @@ export const Types = {
   GET_REQUEST: "lists/GET_REQUEST",
   GET_SUCCESS: "lists/GET_SUCCESS",
   GET_FAILURE: "lists/GET_FAILURE",
-  OPEN_MODAL_ADD: "lists/OPEN_MODAL_ADD",
-  OPEN_MODAL_REMOVE: "lists/OPEN_MODAL_REMOVE",
-  CLOSE_MODAL_REMOVE: "lists/CLOSE_MODAL_REMOVE",
+  ADD_TOOL_REQUEST: "lists/ADD_TOOL_REQUEST",
+  ADD_TOOL_SUCCESS: "lists/ADD_TOOL_SUCCESS",
+  ADD_TOOL_FAILURE: "lists/ADD_TOOL_FAILURE",
   REMOVE_REQUEST: "lists/REMOVE_REQUEST",
   REMOVE_SUCCESS: "lists/REMOVE_SUCCESS",
   REMOVE_FAILURE: "lists/REMOVE_FAILURE",
-  SEARCH_REQUEST: "lists/SEARCH_REQUEST"
+  SEARCH_REQUEST: "lists/SEARCH_REQUEST",
+  SEARCH_RESULT: "lists/SEARCH_RESULT"
 };
 
 const INITIAL_STATE = {
   data: [],
   error: null,
-  loading: false,
-  openModalAdd: false,
-  openModalRemove: false,
-  toolID: null,
-  toolName: null
+  message: null
 };
 
 export default function lists(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case Types.GET_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        erro: null,
-        openModalAdd: false,
-        openModalRemove: false
-      };
     case Types.GET_SUCCESS:
+      console.log("GET_SUCCESS");
       return {
         ...state,
-        loading: false,
-        data: [...action.payload.data],
-        error: null
+        data: action.payload.data,
+        error: null,
+        message: null
       };
     case Types.GET_FAILURE:
-      return {
-        ...state,
-        openModalAdd: false,
-        loading: false,
-        error: action.payload.error
-      };
-    case Types.OPEN_MODAL_ADD:
-      return { ...state, openModalAdd: true };
-    case Types.OPEN_MODAL_REMOVE:
-      return {
-        ...state,
-        openModalRemove: true,
-        toolID: action.payload.id,
-        toolName: action.payload.title
-      };
-    case Types.CLOSE_MODAL_REMOVE:
-      return {
-        ...state,
-        openModalRemove: false,
-        loading: false,
-        toolID: null,
-        toolName: null
-      };
-    case Types.REMOVE_REQUEST:
-      return { ...state, loading: true, openModalRemove: true };
+      console.log("GET_FAILURE");
+      return { ...state, error: action.payload.error };
     case Types.REMOVE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        openModalRemove: false,
-        error: null
-      };
+      console.log("REMOVE_SUCCESS");
+      return { ...state, error: null, message: "Tool removed successfully" };
     case Types.REMOVE_FAILURE:
+      console.log("REMOVE_FAILURE");
+      return { ...state, error: action.payload.error };
+    case Types.SEARCH_RESULT:
+      console.log("SEARCH_RESULT");
+      return { ...state, data: action.payload.data };
+    case Types.ADD_TOOL_SUCCESS:
+      console.log("ADD_TOOL_SUCCESS", action.payload.data);
       return {
         ...state,
-        loading: false,
-        openModalRemove: true,
-        error: action.payload.error
-      };
-    case Types.SEARCH_REQUEST:
-      return {
-        ...state,
-        loading: false,
         error: null,
+        message: "Tool added successfully",
         data: action.payload.data
       };
+    case Types.ADD_TOOL_FAILURE:
+      console.log("ADD_TOOL_FAILURE");
+      return { ...state, message: null, error: action.payload.error };
     default:
       return state;
   }
@@ -107,22 +73,19 @@ export const Creators = {
     payload: { error }
   }),
 
-  openModalAdd: () => ({
-    type: Types.OPEN_MODAL_ADD
+  addNewToolRequest: data => ({
+    type: Types.ADD_TOOL_REQUEST,
+    payload: { data }
   }),
 
-  openModalRemove: (id, title) => ({
-    type: Types.OPEN_MODAL_REMOVE,
-    payload: { id, title }
+  addNewToolSuccess: data => ({
+    type: Types.ADD_TOOL_SUCCESS,
+    payload: { data }
   }),
 
-  closeModalRemove: () => ({
-    type: Types.CLOSE_MODAL_REMOVE
-  }),
-
-  searchToolRequest: (seachType, text) => ({
-    type: Types.SEARCH_REQUEST,
-    payload: { seachType, text }
+  addNewToolFailure: error => ({
+    type: Types.ADD_TOOL_FAILURE,
+    payload: { error }
   }),
 
   removeToolRequest: id => ({
@@ -137,5 +100,15 @@ export const Creators = {
   removeToolFailure: error => ({
     type: Types.REMOVE_FAILURE,
     payload: { error }
+  }),
+
+  searchToolRequest: (seachType, text) => ({
+    type: Types.SEARCH_REQUEST,
+    payload: { seachType, text }
+  }),
+
+  searchToolResult: data => ({
+    type: Types.SEARCH_RESULT,
+    payload: { data }
   })
 };

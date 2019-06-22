@@ -40,7 +40,7 @@ h1 {
   border-color: #170c3a;
   border-radius: 5px;
   padding-left: 25px;
-  background: #f5f4f6 url("../images/search.png") no-repeat 5px;
+  background: #f5f4f6 url("../assets/images/search.svg") no-repeat 5px;
   background-size: 15px;
   margin-right: 5px;
 }
@@ -65,7 +65,7 @@ h1 {
 
 #btnNewTool {
   padding: 5px 50px;
-  background: #365df0 url("../images/add.svg") no-repeat 20px;
+  background: #365df0 url("../assets/images/add.svg") no-repeat 20px;
   background-size: 15px;
   border-radius: 5px;
   color: #fff;
@@ -77,11 +77,11 @@ h1 {
 }
 
 #btnNewTool:hover {
-  background: #2f55cc url("../images/add.svg") no-repeat 20px;
+  background: #2f55cc url("../assets/images/add.svg") no-repeat 20px;
   background-size: 15px;
 }
 
 #btnNewTool:active {
-  background: #244aa8 url("../images/add.svg") no-repeat 20px;
+  background: #244aa8 url("../assets/images/add.svg") no-repeat 20px;
   background-size: 15px;
 }

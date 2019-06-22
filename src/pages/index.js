@@ -6,8 +6,13 @@ import RemoveTool from "../components/modals/removeTool";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Creators as ListsActions } from "../store/ducks/lists";
+import { Creators as ModalActions } from "../store/ducks/modalActions";
 
 import "./styles.css";
+
+//Mensagens de erro/sucesso
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class Main extends Component {
   state = {
@@ -15,11 +20,18 @@ class Main extends Component {
     text: ""
   };
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.state.text !== prevProps.text) {
+  componentWillMount() {
+    this.props.getListRequest();
+    console.log("request");
+  }
 
-  //   }
-  // }
+  componentWillUpdate() {
+    if (this.props.tools.message !== null) {
+      toast.success(this.props.tools.message);
+    } else if (this.props.tools.message !== null) {
+      toast.error(this.props.tools.error);
+    }
+  }
 
   handleChekboxChange = () => {
     if (this.state.searchType === "q") {
@@ -73,7 +85,10 @@ class Main extends Component {
             </button>
           </div>
         </div>
-        <List />
+        {this.props.data.map(tool => (
+          <List key={tool.id} tool={tool} />
+        ))}
+
         <AddTool />
         <RemoveTool />
       </div>
@@ -86,7 +101,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(ListsActions, dispatch);
+  bindActionCreators({ ...ListsActions, ...ModalActions }, dispatch);
 
 export default connect(
   mapStateToProps,
