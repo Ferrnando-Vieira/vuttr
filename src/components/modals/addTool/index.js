@@ -55,6 +55,9 @@ class AddTool extends Component {
       <ReactModal
         appElement={document.getElementById("root")}
         isOpen={this.props.modalState.openModalAdd}
+        onRequestClose={() => {
+          this.props.closeModalAdd();
+        }}
         style={customStyles}
       >
         <Fragment>
