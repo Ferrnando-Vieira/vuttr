@@ -2,8 +2,7 @@ import { all, takeLatest } from "redux-saga/effects";
 
 import { Types as ListsTypes } from "../ducks/lists";
 
-import { getLists, removeTool, searchTool } from "./lists";
-import { addTool } from "./addTool";
+import { getLists, removeTool, searchTool, addTool } from "./lists";
 
 export default function* rootSaga() {
   yield all([

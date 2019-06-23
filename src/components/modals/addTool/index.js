@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import ReactModal from "react-modal";
 
 import { connect } from "react-redux";
@@ -23,9 +24,17 @@ const customStyles = {
 };
 
 class AddTool extends Component {
+  static propTypes = {
+    addNewToolRequest: PropTypes.func.isRequired,
+    closeModalAdd: PropTypes.func.isRequired,
+    modalState: PropTypes.shape({
+      openModalAdd: PropTypes.bool.isRequired
+    }).isRequired
+  };
+
   state = {
     title: "",
-    link: "",
+    link: null,
     description: "",
     tags: []
   };
@@ -34,7 +43,6 @@ class AddTool extends Component {
     event.preventDefault();
     this.props.addNewToolRequest(this.state);
     this.props.closeModalAdd();
-    console.log("envio de form", this.state);
   }
 
   handleTag = event => {
@@ -46,7 +54,7 @@ class AddTool extends Component {
     return (
       <ReactModal
         appElement={document.getElementById("root")}
-        isOpen={this.props.state.openModalAdd}
+        isOpen={this.props.modalState.openModalAdd}
         style={customStyles}
       >
         <Fragment>
@@ -99,7 +107,7 @@ class AddTool extends Component {
 }
 
 const mapStateToProps = state => ({
-  state: state.modals
+  modalState: state.modals
 });
 
 const mapDispatchToProps = dispatch =>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactModal from "react-modal";
 
 import { connect } from "react-redux";
@@ -23,10 +24,19 @@ const customStyles = {
 };
 
 class RemoveTool extends Component {
+  static propTypes = {
+    removeToolRequest: PropTypes.func.isRequired,
+    closeModalRemove: PropTypes.func.isRequired,
+    state: PropTypes.shape({
+      toolID: PropTypes.number,
+      toolName: PropTypes.string,
+      openModalRemove: PropTypes.bool.isRequired
+    }).isRequired
+  };
+
   handleRemove = () => {
     this.props.removeToolRequest(this.props.state.toolID);
     this.props.closeModalRemove();
-    console.log("remover tool", this.props.state.toolID);
   };
 
   render() {
@@ -61,7 +71,7 @@ class RemoveTool extends Component {
 }
 
 const mapStateToProps = state => ({
-  state: { ...state.lists, ...state.modals }
+  state: state.modals
 });
 
 const mapDispatchToProps = dispatch =>

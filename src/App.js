@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 toast.configure({
-  autoClose: 3000,
+  autoClose: 5000,
   position: "top-center"
 });
 class App extends Component {

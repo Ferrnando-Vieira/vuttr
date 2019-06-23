@@ -22,13 +22,10 @@ const INITIAL_STATE = {
 export default function modals(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.OPEN_MODAL_ADD:
-      console.log("OPEN_MODAL_ADD");
       return { ...state, openModalAdd: true };
     case Types.CLOSE_MODAL_ADD:
-      console.log("OPEN_MODAL_ADD");
       return { ...state, openModalAdd: false };
     case Types.OPEN_MODAL_REMOVE:
-      console.log("OPEN_MODAL_REMOVE");
       return {
         ...state,
         openModalRemove: true,
@@ -36,7 +33,6 @@ export default function modals(state = INITIAL_STATE, action) {
         toolName: action.payload.title
       };
     case Types.CLOSE_MODAL_REMOVE:
-      console.log("CLOSE_MODAL_REMOVE");
       return { ...state, openModalRemove: false };
     default:
       return state;

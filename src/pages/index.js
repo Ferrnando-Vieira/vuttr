@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import List from "../components/list";
 import AddTool from "../components/modals/addTool";
 import RemoveTool from "../components/modals/removeTool";
@@ -15,6 +16,25 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 class Main extends Component {
+  static propTypes = {
+    getListRequest: PropTypes.func.isRequired,
+    tools: PropTypes.shape({
+      message: PropTypes.string,
+      error: PropTypes.string,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          description: PropTypes.string,
+          id: PropTypes.number.isRequired,
+          link: PropTypes.string,
+          title: PropTypes.string,
+          tags: PropTypes.array
+        })
+      ).isRequired
+    }).isRequired,
+    searchToolRequest: PropTypes.func.isRequired,
+    openModalAdd: PropTypes.func.isRequired
+  };
+
   state = {
     searchType: "q",
     text: ""
@@ -22,14 +42,19 @@ class Main extends Component {
 
   componentWillMount() {
     this.props.getListRequest();
-    console.log("request");
   }
 
-  componentWillUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.text !== this.state.text) {
+      this.handleSearch();
+    }
+
     if (this.props.tools.message !== null) {
       toast.success(this.props.tools.message);
-    } else if (this.props.tools.message !== null) {
+      this.props.getListRequest();
+    } else if (this.props.tools.error !== null) {
       toast.error(this.props.tools.error);
+      this.props.getListRequest();
     }
   }
 
@@ -41,7 +66,8 @@ class Main extends Component {
     }
   };
 
-  handleSearch = () => {
+  handleSearch = event => {
+    if (typeof event !== "undefined") event.preventDefault();
     this.props.searchToolRequest(this.state.searchType, this.state.text);
   };
 
@@ -54,15 +80,17 @@ class Main extends Component {
             <p id="subtitle">Very Useful Tools to Remenber</p>
           </div>
           <div id="tools">
-            <form onSubmit={this.handleSearch}>
+            <form
+              onSubmit={e => {
+                this.handleSearch(e);
+              }}
+            >
               <input
                 type="text"
                 id="search"
                 placeholder="search"
                 onChange={e => {
-                  this.setState({
-                    text: e.target.value
-                  });
+                  this.setState({ text: e.target.value });
                 }}
               />
             </form>
@@ -85,7 +113,8 @@ class Main extends Component {
             </button>
           </div>
         </div>
-        {this.props.data.map(tool => (
+
+        {this.props.tools.data.map(tool => (
           <List key={tool.id} tool={tool} />
         ))}
 
@@ -97,7 +126,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  data: state.data
+  tools: state.lists
 });
 
 const mapDispatchToProps = dispatch =>

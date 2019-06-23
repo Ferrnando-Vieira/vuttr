@@ -25,35 +25,30 @@ const INITIAL_STATE = {
 export default function lists(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.GET_SUCCESS:
-      console.log("GET_SUCCESS");
       return {
-        ...state,
         data: action.payload.data,
         error: null,
         message: null
       };
     case Types.GET_FAILURE:
-      console.log("GET_FAILURE");
       return { ...state, error: action.payload.error };
     case Types.REMOVE_SUCCESS:
-      console.log("REMOVE_SUCCESS");
       return { ...state, error: null, message: "Tool removed successfully" };
     case Types.REMOVE_FAILURE:
-      console.log("REMOVE_FAILURE");
-      return { ...state, error: action.payload.error };
-    case Types.SEARCH_RESULT:
-      console.log("SEARCH_RESULT");
-      return { ...state, data: action.payload.data };
-    case Types.ADD_TOOL_SUCCESS:
-      console.log("ADD_TOOL_SUCCESS", action.payload.data);
       return {
         ...state,
+        message: null,
+        error: `Error: ${action.payload.error.message}`
+      };
+    case Types.SEARCH_RESULT:
+      return { ...state, data: action.payload.data };
+    case Types.ADD_TOOL_SUCCESS:
+      return {
         error: null,
         message: "Tool added successfully",
-        data: action.payload.data
+        data: [...state.data, action.payload.data]
       };
     case Types.ADD_TOOL_FAILURE:
-      console.log("ADD_TOOL_FAILURE");
       return { ...state, message: null, error: action.payload.error };
     default:
       return state;
