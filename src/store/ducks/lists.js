@@ -19,13 +19,15 @@ export const Types = {
 const INITIAL_STATE = {
   data: [],
   error: null,
-  message: null
+  message: null,
+  searchText: ""
 };
 
 export default function lists(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.GET_SUCCESS:
       return {
+        ...state,
         data: action.payload.data,
         error: null,
         message: null
@@ -40,6 +42,8 @@ export default function lists(state = INITIAL_STATE, action) {
         message: null,
         error: `Error: ${action.payload.error.message}`
       };
+    case Types.SEARCH_REQUEST:
+      return { ...state, searchText: action.payload.text };
     case Types.SEARCH_RESULT:
       return { ...state, data: action.payload.data };
     case Types.ADD_TOOL_SUCCESS:

@@ -43,7 +43,12 @@ a {
   margin-bottom: 10px;
 }
 
-.tags {
+.tagList {
+  display: inline-block !important;
   font-size: 18px;
   font-weight: 700;
+}
+
+.tag {
+  margin-right: 10px;
 }
