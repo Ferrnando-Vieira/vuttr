@@ -8,15 +8,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The steps below will help you to install and configure VUTTR correctly.
 
-- First of all, clone/download this repository.
+- First of all, clone/download this repository and the [api](https://gitlab.com/bossabox/challenge-fake-api/tree/master) we will use.
 
-- Download and install the json-server.
+- Execute the comand.
 
-> yarn global add json-server
+> npm install
 
 - We must execute the fake-api on the port 3000. To do so, you will need be inside de project folder and type the following comand.:
 
-> json-server db.json
+> npx json-server db.json
 
 - Now, install the dependencies.:
 
