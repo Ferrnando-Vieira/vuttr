@@ -1,68 +1,71 @@
+# VUTTR - Very Useful Tools To Remember
+
+VUTTR is a ReactJS web system for the ones who want to save informations about useful tools that speed up de work or simplify the daily routine. In this system, you can add, search or remove a tool.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Instalation
 
-In the project directory, you can run:
+The steps below will help you to install and configure VUTTR correctly.
 
-### `npm start`
+- First of all, clone/download this repository.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Download and install the json-server.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+> yarn global add json-server
 
-### `npm test`
+- We must execute the fake-api on the port 3000. To do so, you will need be inside de project folder and type the following comand.:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> json-server db.json
 
-### `npm run build`
+- Now, install the dependencies.:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> yarn install
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- It will install all the dependencies used by the system. After the installation is complete, start the project:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> yarn start
 
-### `npm run eject`
+- A message asking if you want to run in another port may appear, in this case, type "Y" and confirm. A link may me shown on the console (possibly http://localhost:3001). Copy and paste it in your browser to access the VUTTR page.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Adding
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To add a new tool, press the "Add" button and a modal with a form will appear.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- To save the tool, click in the button "Add Tool".
+- To close the modal without saving anything, click outside.
+
+#### Searching
+
+You have two options of search.:
+
+- Search in the entire list (default).: You will find every tool who have any word that matches the ones you just typed.
+- Search in tags only.: When this options is checked, you will match the search only by the tool tags.
+
+#### Removing
+
+To remove a tool, click in the "Remove" option of the tool. A modal will be open and you can:
+
+- Confirm the exclusion clicking in "Yes, Remove"
+- Cancel the exclusion clicking in "Cancel"
+
+## Tools used in this project
+
+- axios: Used to make HTTP requests to API.
+- prop-types: Make a runtime verification of the props received by the component to run properly.
+- react-highlight-words: Used to highlight the matching word when you search.
+- react-modal: Tool used to create the modals in a simple way.
+- react-redux and redux: Used to store the state globaly and improve the flow of data.
+- react-toastify: Used to show notifications for the user.
+- redux-saga: Used to make asynchronous calls to API.
+
+There was used too some tools to help in the development, they are:
+
+- editorconfig: Used to have a pattern on the code even between different devs.
+- reactotron: Helps to see the flux and debugg the data of redux and saga.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
