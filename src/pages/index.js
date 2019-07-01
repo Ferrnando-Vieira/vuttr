@@ -77,7 +77,7 @@ class Main extends Component {
         <div id="main">
           <div id="header">
             <h1>VUTTR</h1>
-            <p id="subtitle">Very Useful Tools to Remenber</p>
+            <p id="subtitle">Very Useful Tools to Remember</p>
           </div>
           <div id="tools">
             <form
